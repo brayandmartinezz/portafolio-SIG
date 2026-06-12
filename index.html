@@ -27,7 +27,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px; /* Ampliado un poco para dar más espacio a las dos columnas */
             margin: 0 auto;
             padding: 40px 20px;
         }
@@ -48,15 +48,49 @@
 
         header p {
             font-size: 1.2rem;
-            color: var(--texto-mutated);
+            color: var(--texto-mutado);
             margin: 5px 0 20px 0;
         }
 
-        /* Contenedor de Proyectos */
+        /* Sección de Introducción / Sobre Mí */
+        .intro-section {
+            margin-bottom: 40px;
+        }
+
+        /* Contenedor especial para la sección Sobre Mí */
+        .about-container {
+            display: flex;
+            align-items: center; /* Alinea verticalmente el texto y la foto al centro */
+            gap: 40px; /* Espacio de separación entre el texto y la foto */
+        }
+
+        .about-text {
+            flex: 2; /* Le da más peso y espacio al texto (aproximadamente 65%) */
+        }
+
+        .about-profile {
+            flex: 1; /* Espacio para la foto (aproximadamente 35%) */
+            text-align: center;
+        }
+
+        .about-profile img {
+            width: 240px; /* Tamaño ideal para que se vea nítida y quepa bien */
+            height: 240px;
+            border-radius: 50%; /* Este truco la corta mágicamente en forma de círculo */
+            object-position: center 20%;
+            object-fit: cover; /* Evita que la foto se estire o se deforme */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Una sombra suave para darle profundidad */
+            border: 3px solid #0079c1; /* Una línea delgada con el azul de ArcGIS para combinar */
+        }
+
+        /* Contenedor que agrupa las tarjetas de los proyectos */
         .projects-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
+            /* Define exactamente 2 columnas de igual tamaño (1fr cada una) */
+            grid-template-columns: repeat(2, 1fr); 
+            /* Espacio de separación horizontal y vertical entre las tarjetas */
+            gap: 30px; 
+            margin-top: 20px;
         }
 
         /* Tarjetas de Proyectos Reutilizables */
@@ -67,6 +101,12 @@
             padding: 30px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s, box-shadow 0.2s;
+            
+            /* Caja flexible para forzar que los botones se alineen abajo */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
         }
 
         .project-card:hover {
@@ -107,7 +147,8 @@
             border-radius: 5px;
             transition: background 0.2s;
             margin-right: 10px;
-            margin-top: 5px;
+            margin-top: auto; /* Empuja el botón al fondo de la tarjeta */
+            align-self: flex-start; /* Evita que el botón se estire a lo ancho */
         }
 
         .btn-esri { background-color: var(--azul-esri); color: white; }
@@ -128,65 +169,17 @@
             color: var(--texto-mutado);
             font-size: 0.9rem;
         }
-        /* Contenedor especial para la sección Sobre Mí */
-        .about-container {
-            display: flex;
-            align-items: center; /* Alinea verticalmente el texto y la foto al centro */
-            gap: 40px; /* Espacio de separación entre el texto y la foto */
-        }
 
-        .about-text {
-            flex: 2; /* Le da más peso y espacio al texto (aproximadamente 65%) */
-        }
-
-        .about-profile {
-            flex: 1; /* Espacio para la foto (aproximadamente 35%) */
-            text-align: center;
-        }
-
-        .about-profile img {
-            width: 240px; /* Tamaño ideal para que se vea nítida y quepa bien */
-            height: 240px;
-            border-radius: 50%; /* Este truco la corta mágicamente en forma de círculo */
-            object-position: center 20%;
-            object-fit: cover; /* Evita que la foto se estire o se deforme */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Una sombra suave para darle profundidad */
-            border: 3px solid #0079c1; /* Una línea delgada con el azul de ArcGIS para combinar */
-        }
-
-        /* Ajuste para que en celulares la foto se mueva abajo del texto y no se vea apretado */
+        /* AJUSTES RESPONSIVOS CORREGIDOS (FUERA DE OTRAS REGLAS) */
         @media (max-width: 768px) {
-        .about-container {
+            .about-container {
                 flex-direction: column;
                 text-align: center;
-         }
-            /* Contenedor que agrupa las tarjetas de los proyectos */
-        .projects-grid {
-            display: grid;
-            /* Define exactamente 2 columnas de igual tamaño (1fr cada una) */
-            grid-template-columns: repeat(2, 1fr); 
-            /* Espacio de separación horizontal y vertical entre las tarjetas */
-            gap: 30px; 
-            margin-top: 40px;
-        }
-
-            /* Opcional: Asegura que todas las tarjetas tengan exactamente la misma altura */
-        .project-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%; /* Obliga a la tarjeta a estirarse si su vecina tiene más texto */
-        }
-
-            /* Ajuste de diseño Responsivo: 
-               Si un reclutador ve tu portafolio desde un celular, las columnas se vuelven a poner
-                 una debajo de la otra para que el texto no se vea apretado o ilegible. */
-        @media (max-width: 768px) {
+            }
             .projects-grid {
-                grid-template-columns: 1fr; /* Cambia a 1 sola columna en pantallas chicas */
+                grid-template-columns: 1fr; /* Cambia a una sola columna en móviles */
                 gap: 20px;
-          }
-        }
+            }
         }
     </style>
 </head>
@@ -198,40 +191,42 @@
             <p>Ingeniero Ambiental | Sistemas de Información Geográfica (GIS) | Análisis de Datos Espaciales</p>
         </header>
 
-        <main class="projects-grid">
-            
-            <div class="project-card">
-                <div class="about-container">
-        
-                    <div class="about-text">
-                        <h3>Sobre mí</h3>
-                        <p>Ingeniero Ambiental con enfoque en Sistemas de Información Geográfica (SIG) y análisis de datos espaciales. Experiencia en gestión ambiental y proyectos territoriales, complementada con formación en ArcGIS Pro, análisis geoespacial y gestión de información geográfica. Actualmente desarrollando competencias en automatización y análisis de datos mediante Python y Power BI para optimizar flujos de trabajo y apoyar la toma de decisiones basada en información espacial. Interesado en contribuir a proyectos de ordenamiento territorial, evaluación ambiental, gestión de recursos naturales y análisis geoespacial, integrando herramientas SIG y análisis de datos para generar soluciones con impacto territorial.</p>
+        <main>
+            <div class="intro-section">
+                <div class="project-card">
+                    <div class="about-container">
+                        <div class="about-text">
+                            <h3>Sobre mí</h3>
+                            <p>Ingeniero Ambiental con enfoque en Sistemas de Información Geográfica (SIG) y análisis de datos espaciales. Experiencia en gestión ambiental y proyectos territoriales, complementada con formación en ArcGIS Pro, análisis geoespacial y gestión de información geográfica. Actualmente desarrollando competencias en automatización y análisis de datos mediante Python y Power BI para optimizar flujos de trabajo y apoyar la toma de decisiones basada en información espacial. Interesado en contribuir a proyectos de ordenamiento territorial, evaluación ambiental, gestión de recursos naturales y análisis geoespacial, integrando herramientas SIG y análisis de datos para generar soluciones con impacto territorial.</p>
+                        </div>
+                        <div class="about-profile">
+                            <img src="foto_sobre_mi.png" alt="Foto de perfil de Brayan Martínez">
+                        </div>
                     </div>
-        
-                    <div class="about-profile">
-                        <img src="foto_sobre_mi.png" alt="Foto de perfil de Brayan Martínez">
-                    </div>
-
                 </div>
             </div>
 
-        <div class="projects-grid">
-            <div class="project-card">
-                <span class="badge badge-sig">ArcGIS Pro & StoryMaps</span>
-                <h3>Aptitud del suelo para uso agropecuario en Antioquia</h3>
-                <p>Este trabajo es un resumen de mi trabajo final para el diplomado en Sistemas de Información Geográfica. Su objetivo fue determinar la aptitud de los suelos del departamento de Antioquia mediante la integración de información espacial relacionada con tres componentes: ambiental, edáfico y climático. Para ello, se empleó la metodología de Jerarquías Analíticas y herramientas básicas de geoprocesamiento en la aplicación ArcGIS Pro.</p>
+            <div class="projects-grid">
                 
-                <a href="https://arcg.is/1H0WOL3" target="_blank" class="btn btn-esri">🌍 Abrir StoryMap Interactivo</a>
-            </div>
+                <div class="project-card">
+                    <div>
+                        <span class="badge badge-sig">ArcGIS Pro & StoryMaps</span>
+                        <h3>Aptitud del suelo para uso agropecuario en Antioquia</h3>
+                        <p>Este trabajo es un resumen de mi trabajo final para el diplomado en Sistemas de Información Geográfica. Su objetivo fue determinar la aptitud de los suelos del departamento de Antioquia mediante la integración de información espacial relacionada con tres componentes: ambiental, edáfico y climático. Para ello, se empleó la metodología de Jerarquías Analíticas y herramientas básicas de geoprocesamiento en la aplicación ArcGIS Pro.</p>
+                    </div>
+                    <a href="https://arcg.is/1H0WOL3" target="_blank" class="btn btn-esri">🌍 Abrir StoryMap Interactivo</a>
+                </div>
 
-            <div class="project-card">
-                <span class="badge badge-python">Proyectos en Python</span>
-                <h3>Juego del ahorcado</h3>
-                <p>Dentro de mis primeros pasos aprendiendo Python, tuve el reto de construir desde 0 el famosos juego de ahorcado. Tuve que integrar el conocimiento que hasta ese punto había adquirido en condicionales, operadores lógicos, nested if/else, for loops, funciones y while loops.</p>
+                <div class="project-card">
+                    <div>
+                        <span class="badge badge-python">Proyectos en Python</span>
+                        <h3>Juego del ahorcado</h3>
+                        <p>Dentro de mis primeros pasos aprendiendo Python, tuve el reto de construir desde 0 el famoso juego de ahorcado. Tuve que integrar el conocimiento que hasta ese punto había adquirido en condicionales, operadores lógicos, nested if/else, for loops, funciones y while loops.</p>
+                    </div>
+                    <a href="https://trinket.io/python/c88a779791e3" target="_blank" class="btn btn-python">🕹️ Probar el juego</a>
+                </div>
 
-                <a href="https://trinket.io/python/c88a779791e3" target="_blank" class="btn btn-python">🕹️ Probar el juego</a>
             </div>
-        </div>
         </main>
 
         <footer>
