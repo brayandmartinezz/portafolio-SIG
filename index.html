@@ -156,11 +156,38 @@
 
         /* Ajuste para que en celulares la foto se mueva abajo del texto y no se vea apretado */
         @media (max-width: 768px) {
-            .about-container {
+        .about-container {
                 flex-direction: column;
                 text-align: center;
-            }
-    }
+         }
+            /* Contenedor que agrupa las tarjetas de los proyectos */
+        .projects-grid {
+            display: grid;
+            /* Define exactamente 2 columnas de igual tamaño (1fr cada una) */
+            grid-template-columns: repeat(2, 1fr); 
+            /* Espacio de separación horizontal y vertical entre las tarjetas */
+            gap: 30px; 
+            margin-top: 40px;
+        }
+
+            /* Opcional: Asegura que todas las tarjetas tengan exactamente la misma altura */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Obliga a la tarjeta a estirarse si su vecina tiene más texto */
+        }
+
+            /* Ajuste de diseño Responsivo: 
+               Si un reclutador ve tu portafolio desde un celular, las columnas se vuelven a poner
+                 una debajo de la otra para que el texto no se vea apretado o ilegible. */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr; /* Cambia a 1 sola columna en pantallas chicas */
+                gap: 20px;
+          }
+        }
+        }
     </style>
 </head>
 <body>
@@ -187,7 +214,8 @@
 
                 </div>
             </div>
-           
+
+        <div class="projects-grid">
             <div class="project-card">
                 <span class="badge badge-sig">ArcGIS Pro & StoryMaps</span>
                 <h3>Aptitud del suelo para uso agropecuario en Antioquia</h3>
@@ -209,6 +237,7 @@
         <footer>
             <p>&copy; 2026 | Desarrollado con pasión y código limpio.</p>
         </footer>
+        </div>
     </div>
 
 </body>
