@@ -3,46 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio SIG - Brayan Martínez</title>
+    <title>Portafolio Profesional | Analista SIG & Python</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #333; background-color: #f4f4f9; }
-        header { background: #2c3e50; color: white; padding: 20px; text-align: center; border-radius: 5px; }
-        .container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h2 { color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
-        .project { margin-bottom: 30px; }
-        .map-placeholder { background: #e1e8ed; height: 300px; display: flex; align-items: center; justify-content: center; font-style: italic; color: #7f8c8d; border: 1px dashed #bdc3c7; margin-top: 10px; }
+        /* Variables de Diseño (Colores Modernos) */
+        :root {
+            --bg-principal: #f8f9fa;
+            --bg-tarjetas: #ffffff;
+            --texto-oscuro: #212529;
+            --texto-mutado: #6c757d;
+            --azul-esri: #0079c1;
+            --verde-python: #2b7511;
+            --borde: #e9ecef;
+        }
+
+        /* Estilos Globales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Encabezado (Tu Perfil) */
+        header {
+            text-align: center;
+            padding-bottom: 40px;
+            border-bottom: 2px solid var(--borde);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #1a252f;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--texto-mutated);
+            margin: 5px 0 20px 0;
+        }
+
+        /* Contenedor de Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        /* Tarjetas de Proyectos Reutilizables */
+        .project-card {
+            background-color: var(--bg-tarjetas);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #1a252f;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .badge-sig { background-color: #e1f5fe; color: #0288d1; }
+        .badge-python { background-color: #e8f5e9; color: #388e3c; }
+
+        .project-card p {
+            color: #495057;
+            margin-bottom: 20px;
+        }
+
+        /* Botones de Acción */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.2s;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .btn-esri { background-color: var(--azul-esri); color: white; }
+        .btn-esri:hover { background-color: #005e96; }
+
+        .btn-python { background-color: var(--verde-python); color: white; }
+        .btn-python:hover { background-color: #1f540c; }
+
+        .btn-secondary { background-color: #6c757d; color: white; }
+        .btn-secondary:hover { background-color: #5a6268; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--borde);
+            color: var(--texto-mutado);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Brayan David Martínez Zárate</h1>
-        <p>Ingeniero Ambiental | Sistemas de Información Geográfica (GIS) | Análisis de Datos Espaciales</p>
-    </header>
-
     <div class="container">
-        <h2>Sobre Mí</h2>
-        <p>Bienvenido a mi portafolio profesional. Aquí encontrarás una recopilación de mis proyectos de análisis espacial desarrollados en ArcGIS Pro y en Python.</p>
+        <header>
+            <h1>Mi Portafolio Profesional</h1>
+            <p>Analista SIG & Profesional en Ciencias de la Tierra | Apasionado por la Automatización con Python</p>
+        </header>
 
-        <h2>Proyectos Destacados</h2>
-        
-        <div class="project">
-            <h3>Aptitud del suelo para uso agropecuario en Antioquia</h3>
-            <p><strong>Descripción:</strong> Este trabajo tiene como objetivo determinar la aptitud de los suelos del departamento de Antioquia mediante la integración de información espacial relacionada con tres componentes: ambiental, edáfico y climático. Para ello, se empleó la metodología de Jerarquías Analíticas (AHP, por sus siglas en inglés), la cual permite priorizar variables según su importancia relativa en la toma de decisiones multicriterio (Saaty, 2008).</p>
+        <main class="projects-grid">
             
-            <a href="https://storymaps.arcgis.com/stories/01617e7e38a3414dbc52b05017e879d7" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #0079c1; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background 0.3s;">
-                🌍 Abrir StoryMap 🌍
-            </a>
-        <div class="project" style="margin-top: 40px;">
-            <h3>Proyecto 2: Desarrollo de Lógica en Python (Juego del Ahorcado)</h3>
-            <p><strong>Descripción:</strong> Aplicación de consola desarrollada en Python enfocada en fortalecer fundamentos de programación. Implementa el control de flujos (bucles <code>while/for</code>), condicionales avanzadas y manejo de estructuras de datos modulares.</p>
-            
-            <a href="https://trinket.io/python/c88a779791e3" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #00a86b; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px;">
-                🕹️ Probar el juego 🕹️
-            </a>
-        </div>
-        </div>
+            <div class="project-card">
+                <span class="badge badge-sig">ArcGIS Pro & StoryMaps</span>
+                <h3>Análisis de Aptitud de Tierras para el Cultivo de Aguacate Hass</h3>
+                <p>Estudio geoespacial detallado para la identificación de zonas con alto potencial agrícola. Integré variables climáticas, edáficas y limitantes físicas mediante herramientas avanzadas de geoprocesamiento para generar una narrativa cartográfica interactiva orientada a la toma de decisiones.</p>
+                
+                <a href="https://arcg.is/1H0WOL3" target="_blank" class="btn btn-esri">🌍 Abrir StoryMap Interactivo</a>
+            </div>
+
+            <div class="project-card">
+                <span class="badge badge-python">Python Scripting</span>
+                <h3>Desarrollo de Lógica Modular: Juego del Ahorcado</h3>
+                <p>Aplicación nativa de consola diseñada para fortalecer los fundamentos lógicos del lenguaje. El proyecto destaca por su arquitectura modular, utilizando importaciones dinámicas para separar la base de datos de palabras, los componentes gráficos de arte ASCII y el bucle principal de control.</p>
+
+                <a href="https://trinket.io/python/c88a779791e3" target="_blank" class="btn btn-python">🕹️ Jugar en Vivo</a>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2026 | Desarrollado con pasión y código limpio.</p>
+        </footer>
     </div>
-    
+
 </body>
 </html>
