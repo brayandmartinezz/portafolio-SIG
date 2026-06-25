@@ -101,11 +101,36 @@
             align-items: start;
         }
 
-        /* Columnas individuales (Actúan como contenedores verticales de tarjetas) */
+        /* Columnas individuales con altura máxima fija y navegación interna */
         .portfolio-column {
             display: flex;
             flex-direction: column;
-            gap: 25px; /* Espacio entre tarjetas del mismo tema */
+            gap: 25px;
+    
+            /* DEFINIMOS LA ALTURA MÁXIMA (Ajusta este número si quieres que sea más alta o baja) */
+            max-height: 800px; 
+    
+            /* HABILITA EL SCROLL INTERNO: Solo aparece si el contenido supera los 800px */
+            overflow-y: auto; 
+    
+            /* Agrega un pequeño espacio a la derecha para que la barra no tape las tarjetas */
+            padding-right: 12px; 
+        }
+
+        /* Opcional: Hace que la barra de desplazamiento se vea moderna y delgada (Estilo Premium) */
+        .portfolio-column::-webkit-scrollbar {
+            width: 6px;
+        }
+        .portfolio-column::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .portfolio-column::-webkit-scrollbar-thumb {
+            background: var(--azul-esri); /* Usa el azul de Esri para la barra */
+            border-radius: 4px;
+        }
+        .portfolio-column::-webkit-scrollbar-thumb:hover {
+            background: #005e96;
         }
 
         /* Encabezados internos de cada columna */
